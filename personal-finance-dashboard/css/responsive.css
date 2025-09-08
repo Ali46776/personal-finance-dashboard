@@ -1,0 +1,79 @@
+/* ===========================
+   Responsive & Mobile Styles
+   =========================== */
+
+/* Large screens: 1024px altı */
+@media (max-width: 1024px) {
+  header h1 { font-size: 2rem; }
+  header p { font-size: 1rem; }
+
+  .summary-card p { font-size: 1.6rem; }
+
+  #weather img { width: 70px; height: 70px; }
+
+  .category-card { padding: 18px 24px; font-size: 0.95rem; }
+
+  table th, table td { padding: 12px 14px; }
+
+  .quick-actions button, .settings-grid button { padding: 12px 18px; }
+}
+
+/* Medium screens: 768px altı (tablet ve küçük ekranlar) */
+@media (max-width: 768px) {
+  /* Summary cards tek sütun */
+  .summary-container { grid-template-columns: 1fr; gap: 1rem; }
+
+  /* Quick actions dikey ve ortalı */
+  .quick-actions { flex-direction: column; gap: 12px; }
+
+  /* Categories dikey ve daha küçük */
+  .categories-container { flex-direction: column; gap: 12px; }
+
+  /* Transactions table overflow */
+  .table-wrapper { overflow-x: scroll; }
+
+  /* Weather dikey ve ortalı */
+  #weather { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+
+  /* Settings dikey ve ortalı */
+  .settings-grid { flex-direction: column; gap: 12px; align-items: center; }
+
+  /* Modal dialog küçültme */
+  .modal-dialog { width: 95%; padding: 0; }
+}
+
+/* Small screens: 480px altı (telefon) */
+@media (max-width: 480px) {
+  header h1 { font-size: 1.6rem; }
+  header p { font-size: 0.95rem; }
+
+  .summary-card h3 { font-size: 1rem; }
+  .summary-card p { font-size: 1.4rem; }
+
+  .quick-actions button, .settings-grid button { width: 100%; padding: 10px 14px; }
+
+  .form-row input, .form-row select { padding: 12px; font-size: 0.9rem; }
+
+  /* Category cards full-width */
+  .category-card { width: 100%; text-align: center; }
+
+  /* Transactions table small text */
+  table th, table td { font-size: 0.85rem; padding: 10px 12px; }
+
+  /* Weather info küçült */
+  .weather-info { font-size: 0.9rem; }
+  #weather-temp { font-size: 1.5rem; }
+  #weather-icon { width: 60px; height: 60px; }
+}
+
+/* Hover ve active efektler (responsive ile uyumlu) */
+.category-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 10px 28px var(--shadow); }
+.quick-actions button:hover, .settings-grid button:hover { transform: scale(1.05); }
+table tr:hover { background: rgba(74, 144, 226, 0.08); }
+
+/* Dark mode responsive adjustments */
+body.dark-mode table th { background: #2c2c3e; color: #fff; }
+body.dark-mode table td { border-color: #3a3a4e; color: #f0f0f0; }
+body.dark-mode .summary-card:hover { box-shadow: 0 14px 30px rgba(0,0,0,0.6); }
+body.dark-mode .category-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
+body.dark-mode #weather { background: linear-gradient(135deg,#2c2c3e,#4a4a6e); }

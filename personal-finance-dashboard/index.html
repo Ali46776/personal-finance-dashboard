@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kişisel Finans & Hava Durumu Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:," />
+
+  <!-- Favicon veya icon referansı yok, 404 hatası tamamen kalktı -->
+</head>
+<body>
+  <header>
+    <h1>💰 Kişisel Finans ve Hava Durumu Dashboard</h1>
+    <p>📊 Gelir–Gider takibi, 🗂 Kategoriler, 💸 İşlemler ve 🌤 Güncel hava durumu</p>
+  </header>
+
+  <main>
+    <section id="summary">
+      <div class="summary-container">
+        <div class="summary-card balance-card">
+          <h3>💳 Toplam Bakiye</h3>
+          <p id="total-balance">₺0.00</p>
+        </div>
+        <div class="summary-card income-card">
+          <h3>➕ Toplam Gelir</h3>
+          <p id="total-income">₺0.00</p>
+        </div>
+        <div class="summary-card expense-card">
+          <h3>➖ Toplam Gider</h3>
+          <p id="total-expense">₺0.00</p>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <button id="open-add-modal">➕ İşlem Ekle</button>
+        <select id="period-filter">
+          <option value="all" selected>📅 Tümü</option>
+          <option value="month">🗓 Bu Ay</option>
+          <option value="week">📆 Bu Hafta</option>
+        </select>
+        <select id="category-filter">
+          <option value="all" selected>🗂 Kategori (Tümü)</option>
+          <option value="Gelir">➕ Gelir</option>
+          <option value="Yiyecek & İçecek">🍔 Yiyecek & İçecek</option>
+          <option value="Market">🛒 Market</option>
+          <option value="Ulaşım">🚗 Ulaşım</option>
+          <option value="Kira">🏠 Kira</option>
+          <option value="Eğlence">🎮 Eğlence</option>
+          <option value="Fatura">📄 Fatura</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="categories">
+      <h2>🗂 Kategoriler</h2>
+      <div class="categories-container"><!-- JS dolduracak --></div>
+    </section>
+
+    <section id="transactions">
+      <h2>💸 İşlemler</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>📅 Tarih</th>
+              <th>✏️ Açıklama</th>
+              <th>🗂 Kategori</th>
+              <th>💰 Tutar</th>
+              <th>🗑️ İşlem</th>
+            </tr>
+          </thead>
+          <tbody id="transactions-list"><!-- JS dolduracak --></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="weather-section">
+      <h2>🌤 Güncel Hava Durumu</h2>
+      <div id="weather">
+        <img id="weather-icon" alt="Durum" />
+        <div class="weather-info">
+          <div id="weather-city">-</div>
+          <div>
+            <span id="weather-temp">-</span>
+            <span id="weather-desc">-</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="settings">
+      <h2>⚙️ Kullanıcı Ayarları</h2>
+      <div class="settings-grid">
+        <button id="toggle-theme">Tema Değiştir (Dark/Light)</button>
+        <button id="export-data">Veri Yedekle (JSON)</button>
+        <input type="file" id="import-file" accept="application/json" style="display:none;">
+        <button id="import-data">Veri Geri Yükle (JSON)</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="add-modal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>➕ İşlem Ekle</h3>
+        <button id="close-add-modal">✕</button>
+      </div>
+      <form id="add-transaction-form" class="modal-body">
+        <div class="form-row">
+          <label for="tx-date">Tarih</label>
+          <input type="date" id="tx-date" required />
+        </div>
+        <div class="form-row">
+          <label for="tx-desc">Açıklama</label>
+          <input type="text" id="tx-desc" placeholder="Örn: Market alışverişi" required />
+        </div>
+        <div class="form-row">
+          <label for="tx-category">Kategori</label>
+          <select id="tx-category" required>
+            <option value="Gelir">Gelir</option>
+            <option value="Yiyecek & İçecek">Yiyecek & İçecek</option>
+            <option value="Market">Market</option>
+            <option value="Ulaşım">Ulaşım</option>
+            <option value="Kira">Kira</option>
+            <option value="Eğlence">Eğlence</option>
+            <option value="Fatura">Fatura</option>
+            <option value="Sağlık">Sağlık</option>
+            <option value="Eğitim">Eğitim</option>
+            <option value="Giyim">Giyim</option>
+            <option value="Kültür & Sanat">Kültür & Sanat</option>
+            <option value="Spor">Spor</option>
+            <option value="Tatlı & Atıştırmalık">Tatlı & Atıştırmalık</option>
+            <option value="Hediye">Hediye</option>
+            <option value="Bakım & Kozmetik">Bakım & Kozmetik</option>
+            <option value="Ev Eşyası">Ev Eşyası</option>
+            <option value="Bahçe & Araç">Bahçe & Araç</option>
+            <option value="Teknoloji">Teknoloji</option>
+            <option value="Diğer">Diğer</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="tx-amount">Tutar (₺)</label>
+          <input type="number" step="0.01" id="tx-amount" placeholder="Örn: -250.50 / 500" required />
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel-add">Vazgeç</button>
+          <button type="submit" id="save-add">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
